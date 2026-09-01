@@ -1,0 +1,18 @@
+input TrimAudioInput {
+  fileId: ID!
+  start: String!
+  end: String!
+}
+
+input MergeAudioInput {
+  fileIds: [ID!]!
+  outputFilename: String!
+}
+
+extend type Mutation {
+  trimAudio(input: TrimAudioInput!): ProcessingJobResponse!
+  mergeAudio(input: MergeAudioInput!): ProcessingJobResponse!
+  compressAudio(id: ID!, bitrateKbps: Int!): ProcessingJobResponse!
+  convertAudio(id: ID!, format: String!): ProcessingJobResponse!
+  normalizeAudio(id: ID!): ProcessingJobResponse!
+}

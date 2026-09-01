@@ -1,0 +1,49 @@
+type Folder implements Node {
+  id: ID!
+  name: String!
+  parentId: ID
+  userId: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type FoldersResponse {
+  nodes: [Folder!]!
+  paginationInfo: PaginationInfo!
+}
+
+type CreateFolderResponse {
+  success: Boolean!
+  message: String!
+  folder: Folder
+}
+
+type RenameFolderResponse {
+  success: Boolean!
+  message: String!
+  folder: Folder
+}
+
+type DeleteFolderResponse {
+  success: Boolean!
+  message: String!
+  folderId: ID
+}
+
+type MoveFolderResponse {
+  success: Boolean!
+  message: String!
+  folder: Folder
+}
+
+extend type Query {
+  folder(id: ID!): Folder
+  folders(pagination: PaginationInput): FoldersResponse!
+}
+
+extend type Mutation {
+  createFolder(name: String!, parentId: ID): CreateFolderResponse!
+  renameFolder(id: ID!, newName: String!): RenameFolderResponse!
+  deleteFolder(id: ID!): DeleteFolderResponse!
+  moveFolder(id: ID!, destinationFolderId: ID): MoveFolderResponse!
+}

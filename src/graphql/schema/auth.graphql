@@ -1,0 +1,47 @@
+type RegisterResponse {
+  success: Boolean!
+  message: String!
+  token: String
+  user: User
+}
+
+type LoginResponse {
+  success: Boolean!
+  message: String!
+  token: String
+  user: User
+}
+
+type RefreshTokenResponse {
+  success: Boolean!
+  message: String!
+  token: String
+}
+
+type LogoutResponse {
+  success: Boolean!
+  message: String!
+}
+
+input RegisterInput {
+  email: String!
+  password: String!
+  firstName: String
+  lastName: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+extend type Query {
+  me: User
+}
+
+extend type Mutation {
+  register(input: RegisterInput!): RegisterResponse!
+  login(input: LoginInput!): LoginResponse!
+  refreshToken(token: String!): RefreshTokenResponse!
+  logout: LogoutResponse!
+}

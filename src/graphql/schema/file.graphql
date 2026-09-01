@@ -1,0 +1,137 @@
+type File implements Node & Asset {
+  id: ID!
+  filename: String!
+  size: Float!
+  mimeType: String!
+  status: FileStatus!
+  folderId: ID
+  userId: ID!
+  isFavorite: Boolean!
+  isArchived: Boolean!
+  url: URL
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type FilesResponse {
+  nodes: [File!]!
+  paginationInfo: PaginationInfo!
+}
+
+type UploadFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+type DeleteFileResponse {
+  success: Boolean!
+  message: String!
+  fileId: ID
+}
+
+type RenameFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+type MoveFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+type CopyFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+type DuplicateFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+type ArchiveFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+type RestoreFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+type FavoriteFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+type UnfavoriteFileResponse {
+  success: Boolean!
+  message: String!
+  file: File
+}
+
+input UploadFileInput {
+  file: Upload!
+  folderId: ID
+}
+
+input RenameFileInput {
+  id: ID!
+  newFilename: String!
+}
+
+input MoveFileInput {
+  id: ID!
+  destinationFolderId: ID
+}
+
+type UploadProgressPayload {
+  fileId: ID!
+  progress: Float!
+  bytesUploaded: Float!
+  totalBytes: Float!
+}
+
+type ProcessingProgressPayload {
+  jobId: ID!
+  progress: Float!
+  status: JobStatus!
+  error: String
+}
+
+extend type Query {
+  file(id: ID!): File
+  files(pagination: PaginationInput): FilesResponse!
+  recentFiles(limit: Int): [File!]!
+  favoriteFiles(pagination: PaginationInput): FilesResponse!
+  searchFiles(input: SearchInput!, pagination: PaginationInput): FilesResponse!
+  storageUsage: StorageUsage!
+  processingJobs: [ProcessingJob!]!
+}
+
+extend type Mutation {
+  uploadFile(input: UploadFileInput!): UploadFileResponse!
+  deleteFile(id: ID!): DeleteFileResponse!
+  renameFile(input: RenameFileInput!): RenameFileResponse!
+  moveFile(input: MoveFileInput!): MoveFileResponse!
+  copyFile(id: ID!, destinationFolderId: ID): CopyFileResponse!
+  duplicateFile(id: ID!): DuplicateFileResponse!
+  archiveFile(id: ID!): ArchiveFileResponse!
+  restoreFile(id: ID!): RestoreFileResponse!
+  favoriteFile(id: ID!): FavoriteFileResponse!
+  unfavoriteFile(id: ID!): UnfavoriteFileResponse!
+}
+
+extend type Subscription {
+  uploadProgress(fileId: ID!): UploadProgressPayload!
+  processingProgress(jobId: ID!): ProcessingProgressPayload!
+  jobStatus(jobId: ID!): ProcessingJob!
+}

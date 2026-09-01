@@ -1,0 +1,54 @@
+type ShareLink implements Node {
+  id: ID!
+  fileId: ID!
+  sharedBy: ID!
+  url: URL!
+  permission: Permission!
+  expiresAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SharedLinksResponse {
+  nodes: [ShareLink!]!
+  paginationInfo: PaginationInfo!
+}
+
+type CreateShareLinkResponse {
+  success: Boolean!
+  message: String!
+  shareLink: ShareLink
+}
+
+type RevokeShareLinkResponse {
+  success: Boolean!
+  message: String!
+  shareLinkId: ID
+}
+
+type UpdatePermissionsResponse {
+  success: Boolean!
+  message: String!
+  shareLink: ShareLink
+}
+
+input CreateShareLinkInput {
+  fileId: ID!
+  permission: Permission!
+  expiresInDays: Int
+}
+
+input UpdatePermissionsInput {
+  id: ID!
+  permission: Permission!
+}
+
+extend type Query {
+  sharedLinks(pagination: PaginationInput): SharedLinksResponse!
+}
+
+extend type Mutation {
+  createShareLink(input: CreateShareLinkInput!): CreateShareLinkResponse!
+  revokeShareLink(id: ID!): RevokeShareLinkResponse!
+  updatePermissions(input: UpdatePermissionsInput!): UpdatePermissionsResponse!
+}

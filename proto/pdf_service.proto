@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package pdfservice;
+
+// Service definition for PDF Processing Microservice
+service PDFService {
+  // RPC method to merge multiple PDF files
+  rpc MergePDF (MergePDFRequest) returns (MergePDFResponse);
+
+  // RPC method to split PDF pages
+  rpc SplitPDF (SplitPDFRequest) returns (SplitPDFResponse);
+
+  // RPC method to check job status
+  rpc CheckStatus (StatusRequest) returns (StatusResponse);
+}
+
+// Request message for merging PDFs
+message MergePDFRequest {
+  string job_id = 1;
+  repeated string file_names = 2;
+  string output_file_name = 3;
+  int64 lamport_clock = 4; // Lamport logical clock timestamp from client
+}
+
+// Response message for merging PDFs
+message MergePDFResponse {
+  string job_id = 1;
+  bool success = 2;
+  string message = 3;
+  int32 total_pages = 4;
+  int64 lamport_clock = 5; // Lamport logical clock timestamp from server
+}
+
+// Request message for splitting PDFs
+message SplitPDFRequest {
+  string job_id = 1;
+  string file_name = 2;
+  string page_range = 3; // e.g., "1-3" or "all"
+  int64 lamport_clock = 4; // Lamport logical clock timestamp from client
+}
+
+// Response message for splitting PDFs
+message SplitPDFResponse {
+  string job_id = 1;
+  bool success = 2;
+  string message = 3;
+  repeated string generated_files = 4;
+  int64 lamport_clock = 5; // Lamport logical clock timestamp from server
+}
+
+// Request message for checking status
+message StatusRequest {
+  string job_id = 1;
+  int64 lamport_clock = 2; // Lamport logical clock timestamp from client
+}
+
+// Response message for checking status
+message StatusResponse {
+  string job_id = 1;
+  string status = 2; // e.g., "PENDING", "PROCESSING", "COMPLETED"
+  int32 progress_percent = 3;
+  int64 lamport_clock = 4; // Lamport logical clock timestamp from server
+}
+
+// Service for Experiment 4: Ricart-Agrawala distributed mutual exclusion.
+service MutexService {
+  rpc RequestAccess (AccessRequest) returns (AccessReply);
+}
+
+message AccessRequest {
+  int32 node_id = 1;
+  int32 timestamp = 2;
+}
+
+message AccessReply {
+  int32 node_id = 1;
+  int32 timestamp = 2;
+}

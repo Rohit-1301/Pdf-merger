@@ -1,0 +1,20 @@
+input TrimVideoInput {
+  fileId: ID!
+  start: String!
+  end: String!
+}
+
+input MergeVideoInput {
+  fileIds: [ID!]!
+  outputFilename: String!
+}
+
+extend type Mutation {
+  trimVideo(input: TrimVideoInput!): ProcessingJobResponse!
+  mergeVideo(input: MergeVideoInput!): ProcessingJobResponse!
+  compressVideo(id: ID!, targetSizeMb: Float): ProcessingJobResponse!
+  convertVideo(id: ID!, format: String!): ProcessingJobResponse!
+  thumbnailVideo(id: ID!, timestamp: String!): ProcessingJobResponse!
+  extractAudio(id: ID!, format: String!): ProcessingJobResponse!
+  gifFromVideo(id: ID!, start: String!, duration: Float!): ProcessingJobResponse!
+}

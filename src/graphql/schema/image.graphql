@@ -1,0 +1,26 @@
+input ResizeImageInput {
+  fileId: ID!
+  width: Int!
+  height: Int!
+  maintainAspectRatio: Boolean
+}
+
+input CropImageInput {
+  fileId: ID!
+  x: Int!
+  y: Int!
+  width: Int!
+  height: Int!
+}
+
+extend type Mutation {
+  resizeImage(input: ResizeImageInput!): ProcessingJobResponse!
+  cropImage(input: CropImageInput!): ProcessingJobResponse!
+  rotateImage(id: ID!, degrees: Int!): ProcessingJobResponse!
+  flipImage(id: ID!, direction: String!): ProcessingJobResponse!
+  compressImage(id: ID!, quality: Float): ProcessingJobResponse!
+  convertImage(id: ID!, format: String!): ProcessingJobResponse!
+  thumbnailImage(id: ID!, width: Int!, height: Int!): ProcessingJobResponse!
+  ocrImage(id: ID!): ExtractTextResponse!
+  watermarkImage(id: ID!, watermarkText: String!): ProcessingJobResponse!
+}

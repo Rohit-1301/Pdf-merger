@@ -1,0 +1,10 @@
+{
+  "loginInput": {
+    "email": "test@domain.com",
+    "password": "securepassword123"
+  },
+  "mergeInput": {
+    "fileIds": ["file-1", "file-2"],
+    "outputFilename": "merged_document.pdf"
+  }
+}

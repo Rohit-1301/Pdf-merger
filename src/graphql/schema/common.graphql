@@ -1,0 +1,115 @@
+scalar DateTime
+scalar JSON
+scalar URL
+scalar Upload
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Permission {
+  VIEWER
+  EDITOR
+  OWNER
+}
+
+enum FileStatus {
+  UPLOADING
+  READY
+  PROCESSING
+  FAILED
+  DELETED
+}
+
+enum JobStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+interface Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+interface Asset {
+  id: ID!
+  filename: String!
+  size: Float!
+  mimeType: String!
+  status: FileStatus!
+}
+
+type User implements Node {
+  id: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  role: Role!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type StorageUsage {
+  usedBytes: Float!
+  totalBytes: Float!
+  fileCount: Int!
+  folderCount: Int!
+}
+
+input PaginationInput {
+  page: Int
+  limit: Int
+}
+
+type PaginationInfo {
+  page: Int!
+  limit: Int!
+  totalCount: Int!
+  totalPages: Int!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+}
+
+type ActivityLog implements Node {
+  id: ID!
+  userId: ID!
+  action: String!
+  details: String!
+  ipAddress: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProcessingJob implements Node {
+  id: ID!
+  userId: ID!
+  fileId: ID!
+  jobType: String!
+  status: JobStatus!
+  progress: Float!
+  error: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input SearchInput {
+  keyword: String!
+  fileTypes: [String!]
+  status: [FileStatus!]
+}
+
+type Query {
+  healthCheck: String!
+}
+
+type Mutation {
+  ping: String!
+}
+
+type Subscription {
+  pingSubscription: String!
+}

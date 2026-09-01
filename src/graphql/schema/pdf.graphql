@@ -1,0 +1,41 @@
+type ProcessingJobResponse {
+  success: Boolean!
+  message: String!
+  job: ProcessingJob
+}
+
+type ExtractTextResponse {
+  success: Boolean!
+  message: String!
+  text: String
+}
+
+type ExtractImagesResponse {
+  success: Boolean!
+  message: String!
+  images: [File!]
+}
+
+input MergePDFInput {
+  fileIds: [ID!]!
+  outputFilename: String!
+}
+
+input SplitPDFInput {
+  fileId: ID!
+  ranges: [String!]!
+}
+
+extend type Mutation {
+  mergePDF(input: MergePDFInput!): ProcessingJobResponse!
+  splitPDF(input: SplitPDFInput!): ProcessingJobResponse!
+  compressPDF(id: ID!, quality: String): ProcessingJobResponse!
+  rotatePDF(id: ID!, degrees: Int!): ProcessingJobResponse!
+  extractPages(id: ID!, pages: [Int!]!): ProcessingJobResponse!
+  deletePages(id: ID!, pages: [Int!]!): ProcessingJobResponse!
+  watermarkPDF(id: ID!, watermarkText: String!): ProcessingJobResponse!
+  unlockPDF(id: ID!, password: String!): ProcessingJobResponse!
+  protectPDF(id: ID!, password: String!): ProcessingJobResponse!
+  extractText(id: ID!): ExtractTextResponse!
+  extractImages(id: ID!): ExtractImagesResponse!
+}
