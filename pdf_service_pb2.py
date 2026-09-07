@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11pdf_service.proto\x12\npdfservice\"f\n\x0fMergePDFRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x12\n\nfile_names\x18\x02 \x03(\t\x12\x18\n\x10output_file_name\x18\x03 \x01(\t\x12\x15\n\rlamport_clock\x18\x04 \x01(\x03\"p\n\x10MergePDFResponse\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x0f\n\x07success\x18\x02 \x01(\x08\x12\x0f\n\x07message\x18\x03 \x01(\t\x12\x13\n\x0btotal_pages\x18\x04 \x01(\x05\x12\x15\n\rlamport_clock\x18\x05 \x01(\x03\"_\n\x0fSplitPDFRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x11\n\tfile_name\x18\x02 \x01(\t\x12\x12\n\npage_range\x18\x03 \x01(\t\x12\x15\n\rlamport_clock\x18\x04 \x01(\x03\"t\n\x10SplitPDFResponse\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x0f\n\x07success\x18\x02 \x01(\x08\x12\x0f\n\x07message\x18\x03 \x01(\t\x12\x17\n\x0fgenerated_files\x18\x04 \x03(\t\x12\x15\n\rlamport_clock\x18\x05 \x01(\x03\"6\n\rStatusRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x15\n\rlamport_clock\x18\x02 \x01(\x03\"a\n\x0eStatusResponse\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x18\n\x10progress_percent\x18\x03 \x01(\x05\x12\x15\n\rlamport_clock\x18\x04 \x01(\x03\"3\n\rAccessRequest\x12\x0f\n\x07node_id\x18\x01 \x01(\x05\x12\x11\n\ttimestamp\x18\x02 \x01(\x05\"1\n\x0b\x41\x63\x63\x65ssReply\x12\x0f\n\x07node_id\x18\x01 \x01(\x05\x12\x11\n\ttimestamp\x18\x02 \x01(\x05\x32\xe0\x01\n\nPDFService\x12\x45\n\x08MergePDF\x12\x1b.pdfservice.MergePDFRequest\x1a\x1c.pdfservice.MergePDFResponse\x12\x45\n\x08SplitPDF\x12\x1b.pdfservice.SplitPDFRequest\x1a\x1c.pdfservice.SplitPDFResponse\x12\x44\n\x0b\x43heckStatus\x12\x19.pdfservice.StatusRequest\x1a\x1a.pdfservice.StatusResponse2S\n\x0cMutexService\x12\x43\n\rRequestAccess\x12\x19.pdfservice.AccessRequest\x1a\x17.pdfservice.AccessReplyb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11pdf_service.proto\x12\npdfservice\"f\n\x0fMergePDFRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x12\n\nfile_names\x18\x02 \x03(\t\x12\x18\n\x10output_file_name\x18\x03 \x01(\t\x12\x15\n\rlamport_clock\x18\x04 \x01(\x03\"p\n\x10MergePDFResponse\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x0f\n\x07success\x18\x02 \x01(\x08\x12\x0f\n\x07message\x18\x03 \x01(\t\x12\x13\n\x0btotal_pages\x18\x04 \x01(\x05\x12\x15\n\rlamport_clock\x18\x05 \x01(\x03\"_\n\x0fSplitPDFRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x11\n\tfile_name\x18\x02 \x01(\t\x12\x12\n\npage_range\x18\x03 \x01(\t\x12\x15\n\rlamport_clock\x18\x04 \x01(\x03\"t\n\x10SplitPDFResponse\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x0f\n\x07success\x18\x02 \x01(\x08\x12\x0f\n\x07message\x18\x03 \x01(\t\x12\x17\n\x0fgenerated_files\x18\x04 \x03(\t\x12\x15\n\rlamport_clock\x18\x05 \x01(\x03\"6\n\rStatusRequest\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x15\n\rlamport_clock\x18\x02 \x01(\x03\"a\n\x0eStatusResponse\x12\x0e\n\x06job_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x18\n\x10progress_percent\x18\x03 \x01(\x05\x12\x15\n\rlamport_clock\x18\x04 \x01(\x03\"3\n\rAccessRequest\x12\x0f\n\x07node_id\x18\x01 \x01(\x05\x12\x11\n\ttimestamp\x18\x02 \x01(\x05\"1\n\x0b\x41\x63\x63\x65ssReply\x12\x0f\n\x07node_id\x18\x01 \x01(\x05\x12\x11\n\ttimestamp\x18\x02 \x01(\x05\"H\n\x0bLockRequest\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x11\n\tholder_id\x18\x02 \x01(\x05\x12\x11\n\ttimestamp\x18\x03 \x01(\x05\"-\n\tLockReply\x12\x0f\n\x07granted\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2\xe0\x01\n\nPDFService\x12\x45\n\x08MergePDF\x12\x1b.pdfservice.MergePDFRequest\x1a\x1c.pdfservice.MergePDFResponse\x12\x45\n\x08SplitPDF\x12\x1b.pdfservice.SplitPDFRequest\x1a\x1c.pdfservice.SplitPDFResponse\x12\x44\n\x0b\x43heckStatus\x12\x19.pdfservice.StatusRequest\x1a\x1a.pdfservice.StatusResponse2S\n\x0cMutexService\x12\x43\n\rRequestAccess\x12\x19.pdfservice.AccessRequest\x1a\x17.pdfservice.AccessReply2\x8b\x01\n\x0bLockService\x12=\n\x0b\x41\x63quireLock\x12\x17.pdfservice.LockRequest\x1a\x15.pdfservice.LockReply\x12=\n\x0bReleaseLock\x12\x17.pdfservice.LockRequest\x1a\x15.pdfservice.LockReplyb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -47,8 +47,14 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_ACCESSREQUEST']._serialized_end=672
   _globals['_ACCESSREPLY']._serialized_start=674
   _globals['_ACCESSREPLY']._serialized_end=723
-  _globals['_PDFSERVICE']._serialized_start=726
-  _globals['_PDFSERVICE']._serialized_end=950
-  _globals['_MUTEXSERVICE']._serialized_start=952
-  _globals['_MUTEXSERVICE']._serialized_end=1035
+  _globals['_LOCKREQUEST']._serialized_start=725
+  _globals['_LOCKREQUEST']._serialized_end=797
+  _globals['_LOCKREPLY']._serialized_start=799
+  _globals['_LOCKREPLY']._serialized_end=844
+  _globals['_PDFSERVICE']._serialized_start=847
+  _globals['_PDFSERVICE']._serialized_end=1071
+  _globals['_MUTEXSERVICE']._serialized_start=1073
+  _globals['_MUTEXSERVICE']._serialized_end=1156
+  _globals['_LOCKSERVICE']._serialized_start=1159
+  _globals['_LOCKSERVICE']._serialized_end=1298
 # @@protoc_insertion_point(module_scope)
